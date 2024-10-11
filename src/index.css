@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+}
+
+.demo-logo-vertical {
+  color: white;
+  text-align: center;
+  display: flex; /* Make the container a flexbox */
+  justify-content: center; /* Horizontally center the text */
+  align-items: center; /* Vertically center the text */
+	height: 32px;
+	margin: 16px;
+	background: rgba(255,255,255,.2);
+	border-radius: 6px;
+}
