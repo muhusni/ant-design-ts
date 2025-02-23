@@ -1,11 +1,18 @@
 import "./index.css"
-import Layout from "./layout/Layout"
+import { AuthProvider } from "./context/AuthContext"
+import AuthRedirect from "./context/AuthRedirect"
+import AppRoutes from "./routes/AppRoutes"
+
 import { BrowserRouter as Router } from "react-router-dom"
 function App() {
 
   return (
+
     <Router>
-      <Layout/ >
+      <AuthProvider>
+        <AuthRedirect />
+        <AppRoutes />
+      </AuthProvider>
     </Router>
   )
 }

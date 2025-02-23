@@ -5,14 +5,19 @@ import {
     UserOutlined,
 } from '@ant-design/icons';
 import { Button, Layout, Menu, theme } from 'antd';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import HomePage from "../views/HomePage"
-import ToDoList from "../views/ToDoList"
+import { Link, Outlet } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 
 const { Header, Sider, Content } = Layout;
 
 const App: React.FC = () => {
+    const { logout } = useAuth();
+    const logoutRequest = async () => {
+        await logout();
+      };
+
+
     const [collapsed, setCollapsed] = useState(false);
     const {
         token: { colorBgContainer, borderRadiusLG },
@@ -61,7 +66,7 @@ const App: React.FC = () => {
                         <Button style={{
                             fontSize: '16px',
                             marginRight: "10px"
-                        }}>Another Button</Button>
+                        }} onClick={logoutRequest}>Sign Out</Button>
                     </Header>
                     <Content
                         style={{
@@ -72,10 +77,7 @@ const App: React.FC = () => {
                             borderRadius: borderRadiusLG,
                         }}
                     >
-                        <Routes>
-                            <Route path="/" element={<HomePage />} />
-                            <Route path="/to-do-list" element={<ToDoList />} />
-                        </Routes>
+                        <Outlet />
                     </Content>
                 </Layout>
             </Layout>

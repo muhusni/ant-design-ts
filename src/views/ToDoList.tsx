@@ -79,7 +79,7 @@ const ToDoList: React.FC = () => {
                         <p>{item}</p>
                     </Card>
                 ))}
-                <Modal title="Edit Data" open={isModalOpen} onOk={handleEdit} onCancel={() => console.log("canceled")}>
+                <Modal title="Edit Data" open={isModalOpen} onOk={handleEdit} onCancel={() => setIsModalOpen((prev) => !prev)}>
                     <Input
                         value={editData}
                         onChange={(e) => setEditData(e.target.value)} // Update editData dynamically
