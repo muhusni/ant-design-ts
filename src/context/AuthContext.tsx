@@ -2,7 +2,7 @@ import { createContext, useReducer, ReactNode, useContext, useEffect, useState }
 import API from "../config/axiosConfig";
 import { UserLogin } from "../types/auth";
 import qs from "qs";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 // Auth state type
 interface AuthState {
@@ -46,6 +46,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     const [state, dispatch] = useReducer(authReducer, initialState);
     const [loading, setLoading] = useState(true); // Prevents UI from rendering too soon
     const navigate = useNavigate();
+    const location = useLocation();
 
     // Check authentication before rendering app
     useEffect(() => {
@@ -53,7 +54,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
             try {
                 const response = await API.get("http://localhost:8000/me");
                 dispatch({ type: "LOGIN", payload: response.data });
-                navigate("/"); // Redirect to home if logged in
+                navigate(location.pathname); // Redirect to home if logged in
             } catch (error) {
                 dispatch({ type: "LOGOUT" });
             } finally {

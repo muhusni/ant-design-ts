@@ -1,11 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import type { FormProps } from 'antd';
-import { Button, Checkbox, Form, Input, Card } from 'antd';
+import { Button, Form, Input, Card } from 'antd';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import qs from "qs";
 import { UserLogin } from '../types/auth';
 
 const onFinishFailed: FormProps<UserLogin>['onFinishFailed'] = (errorInfo) => {
